@@ -1,10 +1,8 @@
 package com.nikolaychuks.articleinventory.controller;
 
 import com.nikolaychuks.articleinventory.model.Article;
-import com.nikolaychuks.articleinventory.model.ArticleId;
 import com.nikolaychuks.articleinventory.service.ArticleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +15,7 @@ public class ArticleController {
 
     private final ArticleService service;
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable Long id){
         return ResponseEntity.ok(service.findArticleById(id));
     }
@@ -31,5 +29,4 @@ public class ArticleController {
     public ResponseEntity<Article> createArticle(@RequestBody Article article){
         return ResponseEntity.ok(service.createArticle(article));
     }
-
 }
