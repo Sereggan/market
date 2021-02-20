@@ -1,13 +1,13 @@
-package com.nikolaychuks.articleinventory.model;
+package com.nikolaychuks.cartservice.model;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="article")
+@Table(name="CartItem")
 @Data
-public class Article {
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,4 +15,8 @@ public class Article {
     private String title;
     private Long price = 0L;
     private Long quantity = 0L;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 }
