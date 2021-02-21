@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.persistence.OptimisticLockException;
+
 @Slf4j
 @ControllerAdvice
 public class ControllerAdvisor {
@@ -16,5 +18,12 @@ public class ControllerAdvisor {
         log.info("Could not find Article, id: {}", exception.getId());
 
         return new ResponseEntity<>("Article not found", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = OptimisticLockException.class)
+    protected ResponseEntity<Object> handleOptimisticLockException(OptimisticLockException exception){
+        log.info("Optimistic lock happened");
+
+        return new ResponseEntity<>("Optimistic lock happened", HttpStatus.LOCKED);
     }
 }
