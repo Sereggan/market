@@ -30,9 +30,4 @@ public class ArticleController {
     public ResponseEntity<Article> createArticle(@RequestBody Article article){
         return ResponseEntity.ok(service.createArticle(article));
     }
-
-    @PutMapping("/reduce")
-    public ResponseEntity<Article> reduceArticle(@RequestBody ArticleToReduceDto article){
-        return ResponseEntity.ok(service.reduceArticle(article));
-    }
 }
