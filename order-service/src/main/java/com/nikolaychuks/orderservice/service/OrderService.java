@@ -1,6 +1,6 @@
 package com.nikolaychuks.orderservice.service;
 
-import com.nikolaychuks.orderservice.model.Order;
+import com.nikolaychuks.orderservice.dto.OrderDto;
 import com.nikolaychuks.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final EventService eventService;
 
-    public void createOrder(Order order) {
+    public void createOrder(OrderDto order) {
+        eventService.createArticlesChangedMessage(order.getArticles());
+
     }
 }

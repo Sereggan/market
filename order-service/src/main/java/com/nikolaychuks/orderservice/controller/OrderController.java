@@ -1,6 +1,6 @@
 package com.nikolaychuks.orderservice.controller;
 
-import com.nikolaychuks.orderservice.model.Order;
+import com.nikolaychuks.orderservice.dto.OrderDto;
 import com.nikolaychuks.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping()
-    public void createOrder(@RequestBody Order order){
+    public void createOrder(@RequestBody OrderDto order){
         orderService.createOrder(order);
     }
 }
