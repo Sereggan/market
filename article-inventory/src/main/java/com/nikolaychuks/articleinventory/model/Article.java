@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name="article")
 @Data
+@NoArgsConstructor
 public class Article {
 
     @Id

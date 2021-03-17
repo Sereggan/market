@@ -1,13 +1,13 @@
 package com.nikolaychuks.user.model;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_table")
 @Data
+@NoArgsConstructor
 public class User {
 
     @Id

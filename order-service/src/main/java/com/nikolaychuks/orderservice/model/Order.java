@@ -1,11 +1,13 @@
 package com.nikolaychuks.orderservice.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="order")
+@Table(name = "order")
+@NoArgsConstructor
 @Data
 public class Order {
 
@@ -16,4 +18,13 @@ public class Order {
     private String userId;
 
     private Long price;
+
+    private OrderStatus orderStatus;
+
+    public static enum OrderStatus {
+        ORDER_CREATED,
+        ORDER_REJECTED,
+        ORDER_CONFIRMED,
+        ORDER_COMPLETED
+    }
 }
