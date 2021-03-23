@@ -9,17 +9,18 @@ spring:
           predicates:
             - Path=/article/**
         - id: order-service
-            uri: lb://ORDER-SERVICE
-            predicates:
-              - Path=/order/**
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order/**
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/**
         - id: user-service
-            uri: lb://USER-SERVICE
-            predicates:
-              - Path=/user/**
-        - id: security-service
-            uri: lb://SECURITY-SERVICE
-            predicates:
-              - Path=/auth/**
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+
 
 server:
   port: 8989

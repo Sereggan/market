@@ -1,30 +1,25 @@
 package com.nikolaychuks.orderservice.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.nikolaychuks.orderservice.enums.OrderStatus;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_table")
+@AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
+@Builder
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String userId;
-
     private Long price;
-
+    @Enumerated(EnumType.STRING)
+    @Column(name = "order_status")
     private OrderStatus orderStatus;
-
-    public static enum OrderStatus {
-        ORDER_CREATED,
-        ORDER_REJECTED,
-        ORDER_CONFIRMED,
-        ORDER_COMPLETED
-    }
 }

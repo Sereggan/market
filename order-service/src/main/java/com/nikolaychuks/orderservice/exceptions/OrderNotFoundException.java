@@ -1,4 +1,4 @@
-package com.nikolaychuks.articleinventory.exceptions;
+package com.nikolaychuks.orderservice.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class ArticleNotFoundException extends RuntimeException {
+public class OrderNotFoundException extends RuntimeException {
     private String id;
 }

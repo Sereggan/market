@@ -12,7 +12,7 @@ logging:
     root: INFO
 
 server:
-  port: 8084
+  port: 8091
 
 spring:
   application:
@@ -29,7 +29,7 @@ spring:
       group-id: order-service-group
       bootstrap-servers: localhost:29092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
     producer:
       bootstrap-servers: localhost:29092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

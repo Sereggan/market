@@ -3,6 +3,8 @@ package com.nikolaychuks.orderservice.controller;
 import com.nikolaychuks.orderservice.dto.OrderDto;
 import com.nikolaychuks.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,8 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping()
-    public void createOrder(@RequestBody OrderDto order){
+    public ResponseEntity createOrder(@RequestBody OrderDto order){
         orderService.createOrder(order);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

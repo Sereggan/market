@@ -12,4 +12,4 @@ eureka:
     hostname: localhost
 
 server:
-  port: 9100
+  port: 8093

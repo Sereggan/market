@@ -1,6 +1,5 @@
 package com.nikolaychuks.articleinventory.controller;
 
-import com.nikolaychuks.articleinventory.dto.ArticleToReduceDto;
 import com.nikolaychuks.articleinventory.model.Article;
 import com.nikolaychuks.articleinventory.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,7 @@ public class ArticleController {
     private final ArticleService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Article> getArticleById(@PathVariable Long id){
+    public ResponseEntity<Article> getArticleById(@PathVariable String id){
         return ResponseEntity.ok(service.findArticleById(id));
     }
 
