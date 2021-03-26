@@ -1,7 +1,7 @@
 package com.nikolaychuks.articleinventory.controller;
 
 import com.nikolaychuks.articleinventory.model.Article;
-import com.nikolaychuks.articleinventory.service.ArticleService;
+import com.nikolaychuks.articleinventory.service.internal.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

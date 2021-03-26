@@ -1,7 +1,8 @@
-package com.nikolaychuks.articleinventory.service;
+package com.nikolaychuks.articleinventory.service.internal;
 
 import com.nikolaychuks.articleinventory.dto.ArticleDto;
 import com.nikolaychuks.articleinventory.exceptions.ArticleNotFoundException;
+import com.nikolaychuks.articleinventory.exceptions.CouldNotDeductArticlesException;
 import com.nikolaychuks.articleinventory.model.Article;
 import com.nikolaychuks.articleinventory.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -35,19 +36,18 @@ public class ArticleService {
         return repository.findAll(limitArticles).toList();
     }
 
-    @Transactional
-    public boolean deductInventory(List<ArticleDto> articleDtos) {
-        return articleDtos.stream().anyMatch(articleDto -> deductArticle(articleDto.getId(), articleDto.getQuantity()));
+    @Transactional(rollbackFor = CouldNotDeductArticlesException.class)
+    public void deductInventory(List<ArticleDto> articleDtos) {
+        articleDtos.forEach(articleDto -> deductArticle(articleDto.getId(), articleDto.getQuantity()));
     }
 
-    private boolean deductArticle(String articleId, Long quantity) {
+    private void deductArticle(String articleId, Long quantity) throws CouldNotDeductArticlesException {
         Article article = repository.findById(Long.parseLong(articleId)).orElseThrow(() -> new ArticleNotFoundException(articleId));
 
         if (article.getQuantity() - quantity >= 0) {
             article.setQuantity(article.getQuantity() - quantity);
-            return true;
         } else {
-            return false;
+            throw new CouldNotDeductArticlesException();
         }
     }
 }

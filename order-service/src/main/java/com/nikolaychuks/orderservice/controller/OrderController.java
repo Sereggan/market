@@ -1,14 +1,11 @@
 package com.nikolaychuks.orderservice.controller;
 
 import com.nikolaychuks.orderservice.dto.OrderDto;
-import com.nikolaychuks.orderservice.service.OrderService;
+import com.nikolaychuks.orderservice.service.internal.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/order")
@@ -17,8 +14,13 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    @GetMapping
+    public ResponseEntity getAllOrders() {
+        return ResponseEntity.ok(orderService.findAll());
+    }
+
     @PostMapping()
-    public ResponseEntity createOrder(@RequestBody OrderDto order){
+    public ResponseEntity createOrder(@RequestBody OrderDto order) {
         orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

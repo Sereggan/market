@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerAdvisor {
 
     @ExceptionHandler(value = OrderNotFoundException.class)
-    protected ResponseEntity<Object> handleArticleNotFoundException(OrderNotFoundException exception){
-        log.info("Could not find Article, id: {}", exception.getId());
+    protected ResponseEntity<Object> handleOrderNotFoundException(OrderNotFoundException exception) {
+        log.info("Could not find Order, id: {}", exception.getId());
 
         return new ResponseEntity<>("Order not found", HttpStatus.NOT_FOUND);
     }

@@ -1,6 +1,6 @@
-package com.nikolaychuks.articleinventory.config;
+package com.nikolaychuks.orderservice.config;
 
-import com.nikolaychuks.articleinventory.message.Message;
+import com.nikolaychuks.orderservice.message.Message;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

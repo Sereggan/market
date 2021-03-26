@@ -1,5 +1,6 @@
-package com.nikolaychuks.articleinventory.dto;
+package com.nikolaychuks.articleinventory.events;
 
+import com.nikolaychuks.articleinventory.dto.ArticleDto;
 import lombok.*;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 @Builder
 public class OrderCreatedEvent {
 
-    private Long id;
+    private Long orderId;
     private List<ArticleDto> articles;
+    private Long price;
+    private Long userId;
 }

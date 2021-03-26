@@ -19,7 +19,8 @@ public class OrderDto {
         return Order.builder()
                 .orderStatus(OrderStatus.ORDER_CREATED)
                 .price(orderDto.getPrice())
-                .userId(orderDto.getUserId().toString())
+                .userId(orderDto.getUserId())
                 .build();
     }
+
 }

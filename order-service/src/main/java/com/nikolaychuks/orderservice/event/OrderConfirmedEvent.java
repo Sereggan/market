@@ -1,4 +1,4 @@
-package com.nikolaychuks.orderservice.dto;
+package com.nikolaychuks.orderservice.event;
 
 import com.nikolaychuks.orderservice.model.Order;
 import lombok.*;
@@ -11,10 +11,10 @@ import lombok.*;
 public class OrderConfirmedEvent {
 
     private Long id;
-    private String userId;
+    private Long userId;
     private Long price;
 
-    public static OrderConfirmedEvent toOrderConfirmedEvent(Order order){
+    public static OrderConfirmedEvent toOrderConfirmedEvent(Order order) {
         return OrderConfirmedEvent.builder().id(order.getId())
                 .price(order.getPrice())
                 .userId(order.getUserId())
