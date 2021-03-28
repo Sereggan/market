@@ -22,7 +22,7 @@ Unit tests(Junit5), it(wiremock), Authorization(Token), Add unsuccessfull states
 4 в случае успеха пушит OrderConfirmedEvent  
 5 payment-service уменьшает баланс  
 6 в случае успеха пушит OrderCompletedEvent  
-7 order-service слушает все изменения состояния заказа и обновляет state в бд(нужен отдельный мс наверное, а логику создания в orchestrator, но хотелось реализовать паттерн хореографии)  
+7 order-service слушает все изменения состояния заказа и обновляет state в бд(нужен отдельный мс наверное, а логику создания заказа вынести в orchestrator, но хотелось реализовать паттерн хореографии)  
   
 Список квизов:  
 ![alt text](images/image1.jpg)  
