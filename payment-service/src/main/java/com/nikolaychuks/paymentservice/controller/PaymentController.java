@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
+@RequestMapping("/payment")
 public class PaymentController {
 
     private final PaymentService service;

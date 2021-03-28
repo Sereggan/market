@@ -1,5 +1,7 @@
 package com.nikolaychuks.paymentservice.service.events;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nikolaychuks.paymentservice.events.OrderConfirmedEvent;
 import com.nikolaychuks.paymentservice.exceptions.CouldNotCompletOrderException;
 import com.nikolaychuks.paymentservice.message.Message;
@@ -16,19 +18,28 @@ public class EventListenerService {
 
     private final PaymentService paymentService;
     private final EventService eventService;
+    private final ObjectMapper objectMapper;
+
     private final String ORDER_CONFIRMED_TOPIC = "order_confirmed";
     private final String ORDER_COMPLETED_TOPIC = "order_completed";
 
     @KafkaListener(topics = ORDER_CONFIRMED_TOPIC)
-    private void consumeOrderConfirmed(Message messageJson) {
-        OrderConfirmedEvent event = (OrderConfirmedEvent) messageJson.getData();
+    private void consumeOrderConfirmed(Message<String> messageJson) {
+        OrderConfirmedEvent event = null;
+        try {
+            event = objectMapper.readValue(messageJson.getData(), OrderConfirmedEvent.class);
+        } catch (JsonProcessingException e) {
+            log.info("Could not convert event");
+        }
+
         log.info("Receiver OrderCreated Event with order id: {}", event.getOrderId());
+
         try {
             paymentService.payOrder(event.getOrderId(), event.getPrice());
 
             log.info("Sending OrderConfirmed Event with order id: {}", event.getOrderId());
 
-            messageJson.setData(event.getOrderId());
+            messageJson.setData(String.valueOf(event.getOrderId()));
 
             eventService.sendMessage(ORDER_COMPLETED_TOPIC, messageJson);
         } catch (CouldNotCompletOrderException e) {

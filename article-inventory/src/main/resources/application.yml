@@ -11,10 +11,15 @@ logging:
     root: INFO
 server:
   port: 8090
+
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
   application:
     name: INVENTORY-SERVICE
   datasource:
+    initialization-mode: always
     password: password
     url: jdbc:h2:mem:demo
     username: sa

@@ -32,7 +32,7 @@ public class OrderService {
         Order order = orderRepository.save(OrderDto.toOrder(orderDto));
 
         Message<OrderCreatedEvent> message = new Message();
-        message.setData(OrderCreatedEvent.builder().articles(orderDto.getArticles()).orderId(order.getId().toString()).build());
+        message.setData(OrderCreatedEvent.builder().articles(orderDto.getArticles()).price(orderDto.getPrice()).userId(orderDto.getUserId()).orderId(order.getOrderId().toString()).build());
 
         eventService.sendMessage(ORDER_CREATED_TOPIC, message);
     }
@@ -43,10 +43,8 @@ public class OrderService {
 
     public void changeOrderStatus(Long id, OrderStatus orderStatus) {
         Order order = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(id.toString()));
-
         order.setOrderStatus(orderStatus);
-
-        log.info("Changed order status, orderId: {}, new status: {}", order.getId(), orderStatus);
-
+        orderRepository.saveAndFlush(order);
+        log.info("Changed order status, orderId: {}, new status: {}", order.getOrderId(), orderStatus);
     }
 }

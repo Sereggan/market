@@ -15,8 +15,8 @@ import javax.persistence.*;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orderId;
     private Long userId;
     private Long price;
     @Enumerated(EnumType.STRING)

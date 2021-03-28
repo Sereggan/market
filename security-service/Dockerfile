@@ -7,5 +7,5 @@ RUN mvn -f pom.xml clean package
 
 FROM openjdk:8-alpine
 COPY --from=build /workspace/target/*.jar app.jar
-EXPOSE 8183
+EXPOSE 8098
 ENTRYPOINT ["java","-jar","app.jar"]

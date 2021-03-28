@@ -6,13 +6,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="article")
+@Table(name="article_table")
 @Data
 @NoArgsConstructor
 public class Article {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
     private String title;

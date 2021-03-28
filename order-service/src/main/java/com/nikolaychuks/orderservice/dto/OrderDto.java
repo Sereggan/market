@@ -5,6 +5,7 @@ import com.nikolaychuks.orderservice.model.Order;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -13,6 +14,7 @@ public class OrderDto {
 
     private Long userId;
     private Long price;
+    @NotEmpty
     private List<ArticleDto> articles;
 
     public static Order toOrder(OrderDto orderDto) {

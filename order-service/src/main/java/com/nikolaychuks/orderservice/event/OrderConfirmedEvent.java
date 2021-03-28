@@ -15,7 +15,7 @@ public class OrderConfirmedEvent {
     private Long price;
 
     public static OrderConfirmedEvent toOrderConfirmedEvent(Order order) {
-        return OrderConfirmedEvent.builder().id(order.getId())
+        return OrderConfirmedEvent.builder().id(order.getOrderId())
                 .price(order.getPrice())
                 .userId(order.getUserId())
                 .build();

@@ -1,6 +1,10 @@
 server:
   port: 8092
+
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
   application:
     name: PAYMENT-SERVICE
   datasource:
@@ -9,11 +13,6 @@ spring:
     password: password
   kafka:
     consumer:
-      properties:
-        spring:
-          json:
-            trusted:
-              packages: *
       group-id: payment-service-group
       bootstrap-servers: localhost:29092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

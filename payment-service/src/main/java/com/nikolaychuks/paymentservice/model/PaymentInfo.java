@@ -15,6 +15,7 @@ public class PaymentInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userID")
     private Long userId;
     private Long balance;
 }
