@@ -20,8 +20,8 @@ Unit tests(Junit5), it(wiremock), Authorization(Token), Add unsuccessfull states
 2 orded-service пушит ивен в кафку  
 3 article-inventory берет ивент и резервирует товар  
 4 в случае успеха пушит OrderConfirmedEvent  
-5 payment-service уменьшает баланс
-6 в случае успеха пушит OrderCompletedEvent
+5 payment-service уменьшает баланс  
+6 в случае успеха пушит OrderCompletedEvent  
 7 order-service слушает все изменения состояния заказа и обновляет state в бд(нужен отдельный мс наверное, а логику создания в orchestrator, но хотелось реализовать паттерн хореографии)  
   
 Список квизов:  
