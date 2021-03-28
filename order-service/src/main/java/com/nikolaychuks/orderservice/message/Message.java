@@ -1,9 +1,6 @@
 package com.nikolaychuks.orderservice.message;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -12,6 +9,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Setter
 @Getter
+@Builder
 public class Message<T> {
 
     private String type;

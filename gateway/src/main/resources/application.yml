@@ -1,3 +1,6 @@
+server:
+  port: 8989
+
 spring:
   application:
     name: GATEWAY-SERVICE
@@ -20,10 +23,6 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user/**
-
-
-server:
-  port: 8989
 
 eureka:
   instance:

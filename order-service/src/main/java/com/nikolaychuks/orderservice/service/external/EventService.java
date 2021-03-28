@@ -19,6 +19,7 @@ public class EventService {
     @SneakyThrows
     public void sendMessage(String topic, Message message) {
         log.info("Sending message to topic: {} , data: {}", topic, message);
+
         String data = objectMapper.writeValueAsString(message.getData());
         message.setData(data);
         kafkaTemplate.send(topic, message);

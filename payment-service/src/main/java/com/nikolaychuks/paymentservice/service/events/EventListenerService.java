@@ -1,12 +1,12 @@
 package com.nikolaychuks.paymentservice.service.events;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nikolaychuks.paymentservice.events.OrderConfirmedEvent;
 import com.nikolaychuks.paymentservice.exceptions.CouldNotCompletOrderException;
 import com.nikolaychuks.paymentservice.message.Message;
 import com.nikolaychuks.paymentservice.service.internal.PaymentService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -23,14 +23,10 @@ public class EventListenerService {
     private final String ORDER_CONFIRMED_TOPIC = "order_confirmed";
     private final String ORDER_COMPLETED_TOPIC = "order_completed";
 
+    @SneakyThrows
     @KafkaListener(topics = ORDER_CONFIRMED_TOPIC)
     private void consumeOrderConfirmed(Message<String> messageJson) {
-        OrderConfirmedEvent event = null;
-        try {
-            event = objectMapper.readValue(messageJson.getData(), OrderConfirmedEvent.class);
-        } catch (JsonProcessingException e) {
-            log.info("Could not convert event");
-        }
+        OrderConfirmedEvent event = objectMapper.readValue(messageJson.getData(), OrderConfirmedEvent.class);
 
         log.info("Receiver OrderCreated Event with order id: {}", event.getOrderId());
 

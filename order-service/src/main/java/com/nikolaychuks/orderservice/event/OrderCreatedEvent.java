@@ -13,12 +13,12 @@ import java.util.List;
 @Builder
 public class OrderCreatedEvent {
 
-    private String orderId;
+    private Long orderId;
     private List<ArticleDto> articles;
     private Long price;
     private Long userId;
 
-    public static OrderCreatedEvent toOrderEvent(OrderDto orderDto, String id) {
+    public static OrderCreatedEvent toOrderEvent(OrderDto orderDto, Long id) {
         return OrderCreatedEvent.builder()
                 .orderId(id)
                 .articles(orderDto.getArticles())

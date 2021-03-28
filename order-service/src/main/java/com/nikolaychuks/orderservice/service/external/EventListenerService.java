@@ -7,7 +7,6 @@ import com.nikolaychuks.orderservice.message.Message;
 import com.nikolaychuks.orderservice.model.Order;
 import com.nikolaychuks.orderservice.service.internal.OrderService;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,7 @@ public class EventListenerService {
 
         Order order = objectMapper.readValue(messageJson.getData(), Order.class);
 
-        log.info("Received message that order confirmed: {}", order.getOrderId());
+        log.info("Received OrderConfirmedMessage, orderId: {}", order.getOrderId());
 
         orderService.changeOrderStatus(order.getOrderId(), OrderStatus.ORDER_CONFIRMED);
     }
@@ -36,9 +35,9 @@ public class EventListenerService {
     @KafkaListener(topics = ORDER_COMPLETED_TOPIC)
     public void consumeOrderCompleted(Message<String> messageJson) throws JsonProcessingException {
 
-        Long orderId = Long.parseLong(objectMapper.readValue(messageJson.getData(),String.class));
+        Long orderId = Long.parseLong(objectMapper.readValue(messageJson.getData(), String.class));
 
-        log.info("Received message that order completed: {}", orderId);
+        log.info("Received OrderCompletedMessage, orderId: {}", orderId);
 
         orderService.changeOrderStatus(orderId, OrderStatus.ORDER_COMPLETED);
     }
