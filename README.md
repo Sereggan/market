@@ -12,4 +12,8 @@ docker-compose -d up
   
   
 ## TODO:  
-Jaeger, unit tests, it(wiremock), Authorization(Token), Add unsuccessfull states to order, Spring state machine(for order states, not sure)
+Unit tests(Junit5), it(wiremock), Authorization(Token), Add unsuccessfull states to order, Spring state machine(for order states, not sure), Jaeger
+  
+  
+Список квизов:  
+![alt text](images/image1.jpg)  
