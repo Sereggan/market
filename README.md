@@ -5,6 +5,8 @@ Market project.
   
 # Run:  
 docker-compose -d up  
+kafka ui:  
+http://localhost:8085/  
 
 
 ## Postman Collection:  
