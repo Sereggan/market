@@ -28,3 +28,10 @@ Unit tests(Junit5), it(wiremock), Authorization(Token), Add unsuccessfull states
   
 Список квизов:  
 ![alt text](images/image1.jpg)  
+  
+  
+## Unit Tests:  
+Junit5, Mockito - in Order Service
+  
+## Integrational Tests:  
+Wiremock - in Order Service
