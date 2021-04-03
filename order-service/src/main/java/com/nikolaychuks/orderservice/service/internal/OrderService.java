@@ -28,23 +28,26 @@ public class OrderService {
         return orderRepository.findById(Long.parseLong(orderId)).orElseThrow(() -> new OrderNotFoundException(orderId));
     }
 
-    public void createOrder(OrderDto orderDto) {
+    public Order createOrder(OrderDto orderDto) {
         Order order = orderRepository.save(OrderDto.toOrder(orderDto));
 
         Message<OrderCreatedEvent> message = new Message();
         message.setData(OrderCreatedEvent.toOrderEvent(orderDto, order.getOrderId()));
 
         eventService.sendMessage(ORDER_CREATED_TOPIC, message);
+
+        return order;
     }
 
     public List<Order> findAll() {
         return orderRepository.findAll();
     }
 
-    public void changeOrderStatus(Long orderId, OrderStatus orderStatus) {
+    public Order changeOrderStatus(Long orderId, OrderStatus orderStatus) {
         Order order = orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId.toString()));
         order.setOrderStatus(orderStatus);
         orderRepository.saveAndFlush(order);
         log.info("Changed order status, orderId: {}, new status: {}", order.getOrderId(), orderStatus);
+        return order;
     }
 }
