@@ -14,7 +14,7 @@ http://localhost:8085/
   
   
 ## TODO:  
-Unit tests(Junit5), it(wiremock), Authorization(Token), Add unsuccessfull states to order, Spring state machine(for order states, not sure), Jaeger
+Authorization(JWT), Add unsuccessfull states to order, Spring state machine(for order states, not sure), Jaeger
   
   
 ## Путь Order:  
