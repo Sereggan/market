@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:8089
+    producer:
+      bootstrap-servers: localhost:8089
+eureka:
+  client:
+    enabled: false
